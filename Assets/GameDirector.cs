@@ -11,12 +11,12 @@ public class GameDirector : MonoBehaviour
 
     public Image timeGauge;   // タイムゲージを表示する
 
-    float lastTime;           // 残り時間を保存する変数
+    public static float lastTime;           // 残り時間を保存する変数
     
     void Start()
     {
         kyori = 0;
-        lastTime = 5.0f;  // 残り時間5秒
+        lastTime = 100.0f;  // 残り時間100秒
     }
 
     void Update()
