@@ -11,7 +11,7 @@ public class EnemyGenerator : MonoBehaviour
     void Start()
     {
         delta = 0;
-        span = 1.0f;
+        span = 1.2f;
     }
 
     void Update()
@@ -22,14 +22,14 @@ public class EnemyGenerator : MonoBehaviour
         {
             // “G‚ð¶¬‚·‚é
             GameObject go = Instantiate(EnemyPre);
-            float py = Random.Range(-6.0f, 6.0f);
+            float py = Random.Range(-5.0f, 5.0f);
             go.transform.position = new Vector3(10, py, 0);
 
             //ŽžŠÔŒo‰ß‚ð•Û‘¶‚µ‚Ä‚¢‚é•Ï”‚ð‚OƒNƒŠƒA‚·‚é
             delta = 0;
 
             //“G‚ðo‚·ŠÔŠu‚ð™X‚É’Z‚­‚·‚é
-            span -= (span >= 0.5f) ? 0.03f : 0f;
+            span -= (span >= 0.8f) ? 0.03f : 0f;
         }
     }
 }

@@ -24,10 +24,19 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 制限時間を10秒減らす
-        GameDirector.lastTime -= 10.0f;
+        //衝突したオブジェクトがplayerだったとき
+        if (collision.gameObject.CompareTag("player"))
+        {
+            // 制限時間を１０秒減らす
+            GameDirector.lastTime -= 10f;
+            Destroy(gameObject);
+        }
 
-        // 何か他のオブジェクトに重なったら破棄
-        Destroy(gameObject);
+        // 衝突したオブジェクトがshotだったとき
+        if (collision.gameObject.CompareTag("Shot"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
 }
