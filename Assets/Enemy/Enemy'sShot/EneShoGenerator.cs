@@ -12,7 +12,7 @@ public class EneShoGenerator : MonoBehaviour
 
     void Start()
     {
-        this.enemy = GameObject.Find("EnemyGenarator");
+        this.enemy = GameObject.Find("EnemyGenerator");
         delta = 0;
         span = 3.5f;
     }

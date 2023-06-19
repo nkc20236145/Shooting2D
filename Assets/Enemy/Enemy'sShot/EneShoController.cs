@@ -5,6 +5,7 @@ using UnityEngine;
 public class EneShoController : MonoBehaviour
 {
     Transform player;
+    float speed = 5;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class EneShoController : MonoBehaviour
         transform.position += dir.normalized * speed * Time.deltaTime;
 
         // ‰æ–ÊŠO‚Éo‚½‚ç”jŠü
-        if (transform.position.x > -10.0f)
+        if (transform.position.x < -10.0f )
         {
             Destroy(gameObject);
         }
