@@ -7,10 +7,23 @@ using UnityEngine;
 public class ShotGenerator : MonoBehaviour
 {
     public GameObject ShotPre;   // 弾のプレハブを保存する
-    float timer;            // 弾の発射間隔を調整
-    int power = 0;          // 弾のレベル
+    float timer;                 // 弾の発射間隔を調整
+    int power;                   // 弾のレベル
     GameObject player;
     GameObject Kyori;
+
+
+    // 弾のレベル値を他のスクリプトから
+    // 参照・変更するためのプロパティ
+    public int Power
+    {
+        set
+        {
+            power = value;
+            power = Mathf.Clamp(power, 0, 12);
+        }
+        get { return power; }
+    }
 
     void Start()
     {

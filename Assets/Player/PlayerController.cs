@@ -6,13 +6,25 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Vector3 dir = Vector3.zero;   // 移動方向を保存する変数
-    float speed = 5.0f;           // speedの値を保存
-    Animator anim;                // アニメーターコンポーネントの情報を
+    float speed;           // speedの値を保存
+    Animator anim;                // アニメーターコンポーネントの情報を保存
 
+    // 自キャラのスピードの値を他のスクリプトから
+    // 参照・変更するためのプロパティ
+    public float Speed
+    {
+        set
+        {
+            speed = value;
+            speed = Mathf.Clamp(speed,1,20);
+        }
+        get { return speed; }
+    }
     void Start()
     {
         //  アニメーターコンポーネントの情報を保存
         anim = GetComponent<Animator>();
+        speed = 10f;
     }
 
     void Update()

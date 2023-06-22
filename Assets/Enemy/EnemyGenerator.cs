@@ -6,18 +6,20 @@ public class EnemyGenerator : MonoBehaviour
 {
     public GameObject EnemyPre;   // “G‚ÌƒvƒŒƒnƒu‚ð•Û‘¶‚·‚é•Ï”
     float delta;                  // Œo‰ßŽžŠÔŒvŽZ—p
-    float span;                   // 
+    float span;                   // “G‚ªoŒ»‚·‚éŠÔŠu
 
     void Start()
     {
-        delta = 0;
-        span = 1.2f;
+        this.delta = 0;
+        this.span = 1.0f;
     }
 
     void Update()
     {
         // Œo‰ßŽžŠÔ‚ð‰ÁŽZ
         delta += Time.deltaTime;
+
+        // span•b–ˆ‚Éˆ—‚ðs‚¤
         if (delta > span)
         {
             // “G‚ð¶¬‚·‚é
@@ -29,7 +31,7 @@ public class EnemyGenerator : MonoBehaviour
             delta = 0;
 
             //“G‚ðo‚·ŠÔŠu‚ð™X‚É’Z‚­‚·‚é
-            span -= (span >= 0.8f) ? 0.03f : 0f;
+            span -= (span >= 0.5f) ? 0.01f : 0f;
         }
     }
 }
