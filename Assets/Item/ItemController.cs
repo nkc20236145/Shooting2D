@@ -59,11 +59,11 @@ public class ItemController : MonoBehaviour
             }
             else if (itemType == 1)  // 緑：スピード＋５
             {
-                pCon.Speed += 5;
+                pCon.Speed0 += 5;
             }
             else if (itemType == 2)  // 青：弾レベル０　スピード５
             {
-                pCon.Speed = 5;
+                pCon.Speed0 = 5;
                 sGen.Power = 0;
             }
 

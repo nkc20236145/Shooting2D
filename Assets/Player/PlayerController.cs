@@ -5,26 +5,39 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Vector3 dir = Vector3.zero;   // 移動方向を保存する変数
-    float speed;           // speedの値を保存
-    Animator anim;                // アニメーターコンポーネントの情報を保存
+    Vector3 dir = Vector3.zero;    // 移動方向を保存する変数
+    float speed0;                  // speed0の値を保存
+    float speed1;                  // speed1の値を保存
+    Animator anim;                 // アニメーターコンポーネントの情報を保存
 
     // 自キャラのスピードの値を他のスクリプトから
     // 参照・変更するためのプロパティ
-    public float Speed
+    public float Speed0
     {
         set
         {
-            speed = value;
-            speed = Mathf.Clamp(speed,1,20);
+            speed0 = value;
+            speed0 = Mathf.Clamp(speed0,1,20);
         }
-        get { return speed; }
+        get { return speed0; }
+    }
+
+    public float Speed1
+    {
+        set
+        {
+            speed1 = value;
+            speed1 = Mathf.Clamp(speed1, 1, 20);
+        }
+        get { return speed1; }
     }
     void Start()
     {
         //  アニメーターコンポーネントの情報を保存
         anim = GetComponent<Animator>();
-        speed = 10f;
+        speed0 = 10f;
+
+        int[] playerType = { 0, 1 };    // プレイヤーの種類
     }
 
     void Update()
@@ -33,7 +46,7 @@ public class PlayerController : MonoBehaviour
         dir.x = Input.GetAxisRaw("Horizontal");
         dir.y = Input.GetAxisRaw("Vertical");
 
-        transform.position += dir.normalized * speed * Time.deltaTime;
+        transform.position += dir.normalized * speed0 * Time.deltaTime;
 
         // 画面内移動制限
         Vector3 pos = transform.position;

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public GameObject ShotPre;    // 弾のプレハブを保存
-    Vector3 dir;                  // 移動方向
-    float speed = 5.0f;           // 移動速度
-    int enemyType;                // 敵の種類を保存
-    float rad;                  // 敵の動きサインカーブ用
-    float shotTime;               // 弾の発射間隔計算用
-    float shotInterval = 2f;      // 弾の発射間隔
-    GameDirector gd;              // GameDirectorコンポーネントを保存
+    public GameObject ExploPre;     // 爆発のプレハブを保存
+    public GameObject ShotPre;      // 弾のプレハブを保存
+    Vector3 dir;                    // 移動方向
+    float speed = 5.0f;             // 移動速度
+    int enemyType;                  // 敵の種類を保存
+    float rad;                      // 敵の動きサインカーブ用
+    float shotTime;                 // 弾の発射間隔計算用
+    float shotInterval = 2f;        // 弾の発射間隔
+    GameDirector gd;                // GameDirectorコンポーネントを保存
 
     void Start()
     {  
@@ -50,14 +51,26 @@ public class EnemyController : MonoBehaviour
         //衝突したオブジェクトがplayerだったとき
         if (collision.gameObject.CompareTag("player"))
         {
-            // 制限時間を１０秒減らす
-            GameDirector.lastTime -= 10f;
+            // 距離を減らす
+            gd.Kyori -= 1000;
+
+            // 重なった相手が衝突爆発を生成
+            Instantiate(ExploPre, transform.position, transform.rotation);
+
+            // 破棄
             Destroy(gameObject);
         }
 
         // 衝突したオブジェクトがshotだったとき
         if (collision.gameObject.CompareTag("Shot"))
         {
+            // 距離を増やす
+            gd.Kyori += 200;
+
+            // 重なった相手が衝突爆発を生成
+            Instantiate(ExploPre, transform.position, transform.rotation);
+
+            // お互いに破棄
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }

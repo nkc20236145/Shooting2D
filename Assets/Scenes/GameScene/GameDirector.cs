@@ -32,7 +32,7 @@ public class GameDirector : MonoBehaviour
     void Start()
     {
         kyori = 0;
-        lastTime = 100.0f;          // 残り時間100秒
+        lastTime = 60.0f;          // 残り時間60秒
         sGen = GameObject.Find("Player").GetComponent<ShotGenerator>();
     }
 
@@ -54,12 +54,12 @@ public class GameDirector : MonoBehaviour
 
         // 残り時間を減らす処理
         lastTime -= Time.deltaTime;
-        timeGauge.fillAmount = lastTime / 100.0f;
+        timeGauge.fillAmount = lastTime / 60.0f;
 
         // 残り時間が０になったらリロード
         if(lastTime < 0)
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("TitleScene");
         }
     }
 }
