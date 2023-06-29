@@ -15,7 +15,7 @@ public class EneShoController : MonoBehaviour
         this.player = GameObject.Find("Player").transform;
 
         // 弾の速度
-        this.speed = 5f;
+        this.speed = 10f;
 
         // 弾の移動方向をプレイヤーのいる方向にする
         this.dir = player.position - transform.position;
@@ -30,11 +30,8 @@ public class EneShoController : MonoBehaviour
         // 移動処理
         transform.position += dir.normalized * speed * Time.deltaTime;
 
-        // 画面外に出たら破棄
-        if (transform.position.x < -10.0f )
-        {
-            Destroy(gameObject);
-        }
+        // 4秒たったら破棄
+        Destroy(gameObject,4f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,6 +39,8 @@ public class EneShoController : MonoBehaviour
         //衝突したオブジェクトがplayerだったとき
         if (collision.gameObject.CompareTag("player"))
         {
+            // SE再生
+            SeManager.Instance.Play("maou_se_magical29",0.5f,2.2f);
             // 距離を200km減らす
             gd.Kyori -= 200;
             Destroy(gameObject);

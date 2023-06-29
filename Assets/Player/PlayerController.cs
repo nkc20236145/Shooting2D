@@ -6,38 +6,27 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Vector3 dir = Vector3.zero;    // 移動方向を保存する変数
-    float speed0;                  // speed0の値を保存
-    float speed1;                  // speed1の値を保存
+    Vector3 pos;
+    float speed;                   // speedの値を保存
     Animator anim;                 // アニメーターコンポーネントの情報を保存
 
     // 自キャラのスピードの値を他のスクリプトから
     // 参照・変更するためのプロパティ
-    public float Speed0
+    public float Speed
     {
         set
         {
-            speed0 = value;
-            speed0 = Mathf.Clamp(speed0,1,20);
+            speed = value;
+            speed = Mathf.Clamp(speed,1,20);
         }
-        get { return speed0; }
+        get { return speed; }
     }
 
-    public float Speed1
-    {
-        set
-        {
-            speed1 = value;
-            speed1 = Mathf.Clamp(speed1, 1, 20);
-        }
-        get { return speed1; }
-    }
     void Start()
     {
         //  アニメーターコンポーネントの情報を保存
         anim = GetComponent<Animator>();
-        speed0 = 10f;
-
-        int[] playerType = { 0, 1 };    // プレイヤーの種類
+        speed = 10f;
     }
 
     void Update()
@@ -45,8 +34,8 @@ public class PlayerController : MonoBehaviour
         // 移動方向をセット
         dir.x = Input.GetAxisRaw("Horizontal");
         dir.y = Input.GetAxisRaw("Vertical");
-
-        transform.position += dir.normalized * speed0 * Time.deltaTime;
+        
+        transform.position += dir.normalized * speed * Time.deltaTime;
 
         // 画面内移動制限
         Vector3 pos = transform.position;
@@ -67,6 +56,30 @@ public class PlayerController : MonoBehaviour
         else if (dir.y == -1)
         {
             anim.Play("Player_R");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //衝突したオブジェクトがplayerだったとき
+        if (collision.gameObject.CompareTag("SpeedEnemy"))
+        {
+            // アニメーション設定
+            if (dir.y == 0)
+            {
+                // アニメーションクリップ[Player]を再生
+                anim.Play("Player");
+            }
+            else if (dir.y == 1)
+            {
+                anim.Play("Player_R");
+            }
+            else if (dir.y == -1)
+            {
+                anim.Play("Player_L");
+            }
+
+            speed *= -1;
         }
     }
 }

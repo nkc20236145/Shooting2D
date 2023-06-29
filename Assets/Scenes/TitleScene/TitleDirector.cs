@@ -12,6 +12,9 @@ public class TitleDirector : MonoBehaviour
     {
         // 距離表示
         scoreLabel.text = "Score\n" + GameDirector.kyori.ToString("D6");
+
+        // BGMマネージャーを使ったBGM再生
+        BgmManager.Instance.Play("maou_bgm_piano02");
     }
 
     void Update()
@@ -19,7 +22,13 @@ public class TitleDirector : MonoBehaviour
         // 左クリックまたはゲームパッドのボタン０でスタート
         if(Input.GetButtonDown("Fire1"))
         {
-            SceneManager.LoadScene("GameScene");
+            BgmManager.Instance.Stop();
+
+            // SE再生
+            SeManager.Instance.Play("maou_se_system29");
+
+            // Fadeマネージャーを使ったフェード(秒数指定)
+            FadeManager.Instance.LoadScene("GameScene", 2.0f);
         }
     }
 }

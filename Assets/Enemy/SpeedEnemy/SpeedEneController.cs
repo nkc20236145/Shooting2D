@@ -33,8 +33,10 @@ public class SpeedEneController : MonoBehaviour
         //衝突したオブジェクトがplayerだったとき
         if (collision.gameObject.CompareTag("player"))
         {
-            
-           // 重なった相手が衝突爆発を生成
+            // SE再生
+            SeManager.Instance.Play("konnrann _maou_se_system20");
+
+            // 重なった相手が衝突爆発を生成
             Instantiate(ExploPre, transform.position, transform.rotation);
 
             // 破棄
@@ -46,6 +48,8 @@ public class SpeedEneController : MonoBehaviour
         {
             // 重なった相手が衝突爆発を生成
             Instantiate(ExploPre, transform.position, transform.rotation);
+            // SE再生
+            SeManager.Instance.Play("ban _maou_se_battle18");
 
             // お互いに破棄
             Destroy(gameObject);

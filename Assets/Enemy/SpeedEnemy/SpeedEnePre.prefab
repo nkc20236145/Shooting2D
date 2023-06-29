@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7277486187855411549}
   m_Layer: 0
   m_Name: SpeedEnePre
-  m_TagString: Untagged
+  m_TagString: SpeedEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 912218143, guid: 2773325232a825441ba6dc2592e9e677, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 2cfe3e00679a98c4b8590963234240a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 6216932176042442701}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cf0e52744941c1546986d809e5fca073, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9142f42bc0d96314594d4b8cf2c29b5a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

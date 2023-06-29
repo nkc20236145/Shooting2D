@@ -31,6 +31,9 @@ public class GameDirector : MonoBehaviour
 
     void Start()
     {
+        // BGMマネージャーを使ったBGM再生
+        BgmManager.Instance.Play("maou_bgm_orchestra_sinfonia01");
+
         kyori = 0;
         lastTime = 60.0f;          // 残り時間60秒
         sGen = GameObject.Find("Player").GetComponent<ShotGenerator>();
@@ -56,8 +59,13 @@ public class GameDirector : MonoBehaviour
         lastTime -= Time.deltaTime;
         timeGauge.fillAmount = lastTime / 60.0f;
 
-        // 残り時間が０になったらリロード
-        if(lastTime < 0)
+        if (lastTime == 5)
+        {
+            // BGMマネージャーを使ったBGM停止
+            BgmManager.Instance.Stop();
+        }
+        // 残り時間が０になったらタイトルシーン
+        if (lastTime < 0)
         {
             SceneManager.LoadScene("TitleScene");
         }

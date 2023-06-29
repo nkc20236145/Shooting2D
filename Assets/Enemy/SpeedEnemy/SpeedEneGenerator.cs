@@ -11,7 +11,7 @@ public class SpeedEneGenerator : MonoBehaviour
     void Start()
     {
         this.delta = 0;
-        this.span = 4.0f;
+        this.span = 2.5f;
     }
 
     void Update()

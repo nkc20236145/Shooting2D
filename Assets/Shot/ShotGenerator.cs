@@ -52,6 +52,9 @@ public class ShotGenerator : MonoBehaviour
         timer += Time.deltaTime;
         if (Input.GetKey(KeyCode.Z) && timer > 0.3f)
         {
+            // SE再生
+            SeManager.Instance.Play("maou_se_system45");
+
             for (int i = -power; i < power + 1; i++)
             {
                 // プレイヤーの現在地をposに保存

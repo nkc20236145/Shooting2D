@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     int enemyType;                  // 敵の種類を保存
     float rad;                      // 敵の動きサインカーブ用
     float shotTime;                 // 弾の発射間隔計算用
-    float shotInterval = 2f;        // 弾の発射間隔
+    float shotInterval = 3.5f;        // 弾の発射間隔
     GameDirector gd;                // GameDirectorコンポーネントを保存
 
     void Start()
@@ -56,6 +56,8 @@ public class EnemyController : MonoBehaviour
 
             // 重なった相手が衝突爆発を生成
             Instantiate(ExploPre, transform.position, transform.rotation);
+            // SE再生
+            SeManager.Instance.Play("ban _maou_se_battle18",0.5f,1.0f);
 
             // 破棄
             Destroy(gameObject);
@@ -69,6 +71,8 @@ public class EnemyController : MonoBehaviour
 
             // 重なった相手が衝突爆発を生成
             Instantiate(ExploPre, transform.position, transform.rotation);
+            // SE再生            
+            SeManager.Instance.Play("ban _maou_se_battle18",0.5f,1.0f);
 
             // お互いに破棄
             Destroy(gameObject);

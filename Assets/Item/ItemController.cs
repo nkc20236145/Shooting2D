@@ -48,6 +48,9 @@ public class ItemController : MonoBehaviour
         // 重なった相手のタグが【player】だったら
         if (c.gameObject.tag == "player")
         {
+            // SE再生
+            SeManager.Instance.Play("item_maou_se_system36");
+
             // PlayerControllerコンポーネントを保存
             PlayerController pCon = c.gameObject.GetComponent<PlayerController>();
             ShotGenerator sGen = c.gameObject.GetComponent<ShotGenerator>();
@@ -59,11 +62,11 @@ public class ItemController : MonoBehaviour
             }
             else if (itemType == 1)  // 緑：スピード＋５
             {
-                pCon.Speed0 += 5;
+                pCon.Speed += 5;
             }
             else if (itemType == 2)  // 青：弾レベル０　スピード５
             {
-                pCon.Speed0 = 5;
+                pCon.Speed = 5;
                 sGen.Power = 0;
             }
 
